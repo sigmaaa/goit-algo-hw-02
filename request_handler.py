@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     # Main thread: Generate and process requests with a delay
     print("ctrl + C to finish \n")
-    while not stop_program:
+    while True:
         generate_request()
         process_request()
         time.sleep(1)  # Delay of 1 second before the next request

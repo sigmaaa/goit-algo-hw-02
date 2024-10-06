@@ -3,7 +3,6 @@ import uuid
 from queue import Queue
 
 queue = Queue()
-stop_program = False
 
 
 def generate_request():

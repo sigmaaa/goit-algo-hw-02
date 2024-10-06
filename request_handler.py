@@ -1,43 +1,31 @@
+import time
+import uuid
 from queue import Queue
 
-
 queue = Queue()
-request_counter = 0
-
-# Функція generate_request():
-#     Створити нову заявку
-#     Додати заявку до черги
-
-# Функція process_request():
-#     Якщо черга не пуста:
-#         Видалити заявку з черги
-#         Обробити заявку
-#     Інакше:
-#         Вивести повідомлення, що черга пуста
-
-# Головний цикл програми:
-#     Поки користувач не вийде з програми:
-#         Виконати generate_request() для створення нових заявок
-#         Виконати process_request() для обробки заявок
+stop_program = False
 
 
 def generate_request():
-    global request_counter
-    request_id = request_counter
-    request_counter += 1
+    request_id = uuid.uuid4()
     queue.put(request_id)
 
 
 def process_request():
     if not queue.empty():
         request_id = queue.get()
-        print(f"request with id {request_id} processed")
+        print(f"Request with id {request_id} processed")
     else:
-        print("request's queue is empty")
+        print("Request queue is empty")
 
 
 if __name__ == '__main__':
-    while (input("Press enter to continue. Type \"exit\" to finish")
-           != "exit"):
+
+    # Main thread: Generate and process requests with a delay
+    print("ctrl + C to finish \n")
+    while not stop_program:
         generate_request()
         process_request()
+        time.sleep(1)  # Delay of 1 second before the next request
+
+    print("Program has finished.")

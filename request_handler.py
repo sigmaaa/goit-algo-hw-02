@@ -7,6 +7,7 @@ queue = Queue()
 
 def generate_request():
     request_id = uuid.uuid4()
+    print(f"id: {request_id} generated")
     queue.put(request_id)
 
 
@@ -16,6 +17,7 @@ def process_request():
         print(f"Request with id {request_id} processed")
     else:
         print("Request queue is empty")
+    print(f"id {request_id} deleted")
 
 
 if __name__ == '__main__':
